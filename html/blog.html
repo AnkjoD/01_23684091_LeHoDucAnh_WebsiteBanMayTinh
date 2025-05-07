@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class = "container">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <input type="checkbox" name="" id="checkbox">
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <ul class="menu-items">
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html"><i class="fa fa-user-circle-o" style="font-size: 20px;" aria-hidden="true"></i></a></li>
+                </ul>
+                <div class="logo">
+                    <a href="index.html" class="navbar-brand">
+                        <h1 class="h4 mb-0">Máy Tính Store</h1>
+                             
+                    </a>   
+                </div>
+            </div>
+        </nav>
+    </div>
+  <div class="container py-5">
+    <h2 class="mb-4">Latest Blog Posts</h2>
+    <div class="row" id="blog-list">
+      <!-- Blog cards will be inserted here -->
+    </div>
+  </div>
+
+  <script>
+    // Khởi tạo dữ liệu mẫu nếu chưa có
+    
+      const samplePosts = [
+        {
+          id: 1,
+          title: "Hướng Dẫn Cách Bật Và Tắt Camera Laptop Đơn Giản Nhất",
+          image: "../imgs/1705_cach-bat-va-tat-camera-laptop-1.png",
+          excerpt: "",
+          content: `<p>Staying safe online requires awareness of common scams, strong password practices, and keeping your devices secure.</p>`
+        },
+        {
+          id: 2,
+          title: "RAID là gì? Tìm hiểu RAID 0, RAID 1, RAID 5, RAID 6, RAID 10",
+          image: "../imgs/3003_Cong-nghe-RAID-la-gi-AB.jpg",
+          excerpt: "",
+          content: `<p>Password managers help you create and store secure passwords. Popular tools include Bitwarden, 1Password, and Dashlane.</p>`
+        },
+        {
+          id: 3,
+          title: "Hướng Dẫn Chi Tiết Cách Lắp Thêm Ổ Cứng Cho Laptop",
+          image: "../imgs/1705_cach-lap-them-o-cung-cho-laptop-1.jpg",
+          excerpt: "",
+          content: `<p>Password managers help you create and store secure passwords. Popular tools include Bitwarden, 1Password, and Dashlane.</p>`
+        }
+      ];
+      localStorage.setItem("blogPosts", JSON.stringify(samplePosts));
+    
+
+    // Hiển thị danh sách bài viết
+    const blogList = document.getElementById("blog-list");
+    const posts = JSON.parse(localStorage.getItem("blogPosts"));
+
+    posts.forEach(post => {
+      const col = document.createElement("div");
+      col.className = "col-md-4 mb-4";
+      col.innerHTML = `
+        <div class="card h-100">
+          <img src="${post.image}" class="card-img-top" alt="Blog Image" />
+          <div class="card-body">
+            <h5 class="card-title">${post.title}</h5>
+            <p class="card-text">${post.excerpt}</p>
+            <a href="blog-detail.html?id=${post.id}" class="btn btn-primary">Read More</a>
+          </div>
+        </div>`;
+      blogList.appendChild(col);
+    });
+  </script>
+</body>
+</html>

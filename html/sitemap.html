@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Map</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .site-map-container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .site-map-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .site-map-title {
+            background-color: #f1f1f1;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .site-map-title:hover {
+            background-color: #e9ecef;
+        }
+        
+        .site-map-title .fa {
+            transition: transform 0.3s ease;
+        }
+        
+        .rotate-icon {
+            transform: rotate(180deg);
+        }
+        
+        .site-map-content {
+            padding-left: 20px;
+            display: none;
+        }
+        
+        .site-map-link {
+            display: block;
+            padding: 5px 0;
+            color: #3498db;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .site-map-link:hover {
+            color: #2980b9;
+            transform: translateX(5px);
+        }
+        
+        .site-map-subsection {
+            margin-left: 20px;
+            margin-top: 10px;
+            border-left: 2px solid #e9ecef;
+            padding-left: 15px;
+        }
+        
+        .site-map-subtitle {
+            font-weight: 600;
+            color: #555;
+            margin: 10px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .search-box {
+            margin-bottom: 2rem;
+        }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px;
+            border-radius: 3px;
+        }
+        
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            border-radius: 10px 10px 0 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .site-map-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-sitemap me-2"></i>Site Map</h1>
+          
+        </div>
+        
+        <div class="search-box">
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm trong site map...">
+                <button class="btn btn-primary" id="searchButton">Tìm</button>
+            </div>
+        </div>
+        
+        <div class="site-map-container">
+            <!-- Trang chủ -->
+            <div class="site-map-section">
+                <div class="site-map-title">
+                    <span><i class="fas fa-home me-2"></i>Trang chủ</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="site-map-content">
+                    <a href="index.html" class="site-map-link">Trang chủ chính</a>
+                    <a href="product.html" class="site-map-link">Tất cả sản phẩm</a>
+                    <a href="blog.html" class="site-map-link">Blogs mới nhất</a>
+                </div>
+            </div>
+            
+            
+            
+            
+            <!-- Về chúng tôi -->
+            <div class="site-map-section">
+                <div class="site-map-title">
+                    <span><i class="fas fa-building me-2"></i>Về chúng tôi</span>   
+                    <i class="fas fa-chevron-down"></i>  
+                </div>
+                <div class="site-map-content">
+                    <a href="about.html" class="site-map-link">About us</a>
+                    
+                </div>
+            </div>
+            
+           
+            
+            <!-- Tài khoản -->
+            <div class="site-map-section">
+                <div class="site-map-title">
+                    <span><i class="fas fa-user me-2"></i>Tài khoản</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="site-map-content">
+                    <a href="login.html" class="site-map-link">Đăng nhập</a>
+                    <a href="register.html" class="site-map-link">Đăng ký</a>
+                </div>
+            </div>
+            
+            
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Tên Công Ty. Tất cả các quyền được bảo lưu.</p>
+            <p>Liên hệ: info@example.com | Hotline: 1900-1234</p>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Xử lý mở/đóng các mục
+            $('.site-map-title, .site-map-subtitle').click(function() {
+                $(this).find('i.fas').toggleClass('rotate-icon');
+                $(this).next('.site-map-content').slideToggle(300);
+            });
+            
+            // Xử lý tìm kiếm
+            $('#searchButton').click(function() {
+                performSearch();
+            });
+            
+            $('#searchInput').keypress(function(e) {
+                if (e.which === 13) {
+                    performSearch();
+                }
+            });
+            
+            function performSearch() {
+                // Lấy từ khóa tìm kiếm
+                const searchTerm = $('#searchInput').val().toLowerCase().trim();
+                
+                if (searchTerm === '') {
+                    return;
+                }
+                
+                // Xóa bỏ highlights trước đó
+                $('.site-map-link').removeClass('highlight');
+                
+                // Mở tất cả các mục để hiển thị kết quả
+                $('.site-map-content').hide();
+                $('.fas.fa-chevron-down').removeClass('rotate-icon');
+                
+                let foundResults = false;
+                
+                // Tìm và highlight các kết quả
+                $('.site-map-link').each(function() {
+                    const linkText = $(this).text().toLowerCase();
+                    
+                    if (linkText.includes(searchTerm)) {
+                        foundResults = true;
+                        $(this).addClass('highlight');
+                        
+                        // Mở các section chứa kết quả
+                        $(this).closest('.site-map-content').show();
+                        $(this).closest('.site-map-section').find('.site-map-title i.fas').addClass('rotate-icon');
+                        
+                        // Mở các subsection
+                        $(this).closest('.site-map-subsection').find('.site-map-subtitle i.fas').addClass('rotate-icon');
+                        $(this).closest('.site-map-subsection').find('> .site-map-content').show();
+                    }
+                });
+                
+                if (!foundResults) {
+                    alert('Không tìm thấy kết quả nào cho: ' + searchTerm);
+                } else {
+                    // Cuộn đến kết quả đầu tiên
+                    $('html, body').animate({
+                        scrollTop: $('.highlight:first').offset().top - 100
+                    }, 500);
+                }
+            }
+            
+            // Mở rộng tất cả
+            $('#expandAll').click(function() {
+                $('.site-map-content').slideDown(300);
+                $('.fas.fa-chevron-down').addClass('rotate-icon');
+            });
+            
+            // Thu gọn tất cả
+            $('#collapseAll').click(function() {
+                $('.site-map-content').slideUp(300);
+                $('.fas.fa-chevron-down').removeClass('rotate-icon');
+            });
+        });
+    </script>
+</body>
+</html>

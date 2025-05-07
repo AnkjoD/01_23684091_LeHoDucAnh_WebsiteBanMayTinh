@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng Nhập</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    header {
+
+        background: #d70018;
+        color: white;
+      }
+    body {
+      background-color: #f7f7f7;
+    }
+    .form-container {
+      max-width: 400px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    a{
+        text-decoration: none;
+    }
+
+    .logo{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+    .spin{
+      width: 50px;
+      animation-name: spin;
+      animation-duration: 5000ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear; 
+    }
+    .spin path{
+      background-color: white;
+    }
+    @keyframes spin {
+      from {
+          transform:rotate(0deg);
+      }
+      to {
+          transform:rotate(-360deg);
+      }
+    }
+  </style>
+
+</head>
+<body>
+    <a href = 'index.html'>
+        <header class="py-3">
+            <div class="container d-flex justify-content-center align-items-center">
+              <div class="logo">
+                <img src = "../imgs/nazi-symbol-3-svgrepo-com.svg" class = "spin">
+                <h1 class="h4 mb-0">Máy Tính Store</h1>
+                        
+                </div>
+            </div>
+          </header>
+    </a>
+<div class="form-container">
+  <h2 class="text-center">Đăng Nhập</h2>
+  <form id="loginForm">
+    <div class="form-group">
+      <label for="username">Tên đăng nhập</label>
+      <input type="text" class="form-control" id="username" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Mật khẩu</label>
+      <input type="password" class="form-control" id="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
+  </form>
+  <p class="text-center mt-3">Chưa có tài khoản? <a href="register.html">Đăng ký</a></p>
+</div>
+
+<!-- jQuery and Bootstrap JS -->
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+<script>
+  $('#loginForm').on('submit', function(e) {
+    e.preventDefault();
+
+    const username = $('#username').val().trim();
+    const password = $('#password').val();
+
+    // Lấy danh sách người dùng từ localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // Tìm người dùng trùng tên và mật khẩu
+    const validUser = users.find(user => user.username === username && user.password === password);
+
+    if (validUser) {
+      // Lưu trạng thái đăng nhập vào localStorage (tuỳ chọn)
+      localStorage.setItem('currentUser', JSON.stringify(validUser));
+
+      alert('Đăng nhập thành công!');
+      window.location.href = 'index.html'; // chuyển hướng đến trang chính
+    } else {
+      alert('Tên đăng nhập hoặc mật khẩu không đúng!');
+    }
+  });
+</script>
+
+
+</body>
+</html>

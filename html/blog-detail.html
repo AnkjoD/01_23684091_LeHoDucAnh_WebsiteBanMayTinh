@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog Detail</title>
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <input type="checkbox" name="" id="checkbox">
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <ul class="menu-items">
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html"><i class="fa fa-user-circle-o" style="font-size: 20px;" aria-hidden="true"></i></a></li>
+                </ul>
+                <div class="logo">
+                    <a href="index.html" class="navbar-brand">
+                        <h1 class="h4 mb-0">Máy Tính Store</h1>
+                             
+                    </a>   
+                </div>
+            </div>
+    </div>
+  <div class="container py-5">
+    <a href="index.html" class="btn btn-secondary mb-4">&larr; Back to Blog</a>
+    <div id="blog-detail">
+      <!-- Nội dung chi tiết sẽ hiện ở đây -->
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get("id"));
+
+    const posts = JSON.parse(localStorage.getItem("blogPosts")) || [];
+    const post = posts.find(p => p.id === id);
+
+    const blogDetail = document.getElementById("blog-detail");
+
+    if (post) {
+      blogDetail.innerHTML = `
+        <h2>${post.title}</h2>
+        <img src="${post.image}" alt="${post.title}" class="img-fluid mb-4" />
+        <div>${post.content}</div>
+      `;
+    } else {
+      blogDetail.innerHTML = `<p class="text-danger">Blog post not found.</p>`;
+    }
+  </script>
+</body>
+</html>
