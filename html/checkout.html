@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Thanh Toán</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .cart-items {
+            margin-bottom: 30px;
+        }
+        .cart-item {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            align-items: center;
+        }
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-right: 20px;
+        }
+        .item-details {
+            flex-grow: 1;
+        }
+        .item-details h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .item-price {
+            color: #e91e63;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .item-quantity {
+            color: #555;
+            font-size: 14px;
+        }
+        .address-form {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .address-form h2 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .summary {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .summary-row.total {
+            font-weight: bold;
+            font-size: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .btn {
+            padding: 12px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #388e3c;
+        }
+        .success-message {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        .success-message h2 {
+            color: #4caf50;
+            margin-bottom: 15px;
+        }
+        .success-message p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="payment-container">
+        <h1>Thanh Toán</h1>
+        
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+
+        <div class="address-form" id="address-form">
+            <h2>Địa Chỉ Giao Hàng</h2>
+            <div class="user-info">
+                <p><strong>Họ và tên:</strong> <span id="user-fullname"></span></p>
+                <p><strong>Email:</strong> <span id="user-email"></span></p>
+                <p><strong>Số điện thoại:</strong> <span id="user-phone"></span></p>
+            </div>
+            <div class="form-group" style="margin-top: 15px;">
+                <label for="address">Địa Chỉ Chi Tiết</label>
+                <textarea id="address" rows="3" placeholder="Nhập địa chỉ nhận hàng chi tiết"></textarea>
+            </div>
+            <button class="btn" id="saveAddress">Lưu Địa Chỉ</button>
+        </div>
+
+        <div class="address-display hidden" id="address-display">
+            <h2>Địa Chỉ Giao Hàng</h2>
+            <p><strong>Họ và tên:</strong> <span id="display-name"></span></p>
+            <p><strong>Email:</strong> <span id="display-email"></span></p>
+            <p><strong>Số điện thoại:</strong> <span id="display-phone"></span></p>
+            <p><strong>Địa chỉ:</strong> <span id="display-address"></span></p>
+            <button class="btn" style="background-color: #ff9800; margin-top: 10px;" id="changeAddress">Thay Đổi Địa Chỉ</button>
+        </div>
+
+        <div class="summary">
+            <div class="summary-row">
+                <span>Tạm tính</span>
+                <span id="subtotal">0 ₫</span>
+            </div>
+            <div class="summary-row">
+                <span>Phí vận chuyển</span>
+                <span>30,000 ₫</span>
+            </div>
+            <div class="summary-row total">
+                <span>Tổng thanh toán</span>
+                <span id="total">0 ₫</span>
+            </div>
+        </div>
+
+        <button class="btn" id="checkout-btn">Đặt Hàng</button>
+    </div>
+
+    <div class="container success-message" id="success-message">
+        <h2>Đặt Hàng Thành Công!</h2>
+        <p>Cảm ơn bạn đã mua hàng. Đơn hàng của bạn đang được xử lý.</p>
+        <button class="btn" id="continue-shopping">Tiếp Tục Mua Sắm</button>
+    </div>
+
+    <script>
+        function safeParse(jsonString, defaultValue = []) {
+            try {
+                return JSON.parse(jsonString) || defaultValue;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            let subtotal = 0;
+        
+            const currentUser = safeParse(localStorage.getItem('loggedInUser'));
+         
+        
+            const savedAddress = safeParse(localStorage.getItem('shippingAddress'), null);
+        
+            // Nếu đã có thông tin địa chỉ thì không cần hiển thị form
+            if (savedAddress) {
+                showSavedAddress(savedAddress);
+            } else {
+                if (currentUser) {
+                    const fullName = `${currentUser.firstName} ${currentUser.lastName}`;
+                    document.getElementById('user-fullname').textContent = fullName;
+                    document.getElementById('user-email').textContent = currentUser.email;
+                    document.getElementById('user-phone').textContent = currentUser.phone;
+                } else {
+                    window.location.href = 'login.html';
+                    alert('Vui lòng đăng nhập để tiếp tục thanh toán.');
+                }
+            }
+        
+            // Hiển thị sản phẩm trong giỏ hàng
+            if (shoppingCart.length > 0) {
+                shoppingCart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+        
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="item-details">
+                            <h3>${item.name}</h3>
+                            <p class="item-price">${formatCurrency(item.price)}</p>
+                            <p class="item-quantity">Số lượng: ${item.quantity}</p>
+                        </div>
+                        <div class="item-total">
+                            <p class="item-price">${formatCurrency(itemTotal)}</p>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+            } else {
+                cartItemsContainer.innerHTML = '<p>Giỏ hàng của bạn trống.</p>';
+                document.getElementById('checkout-btn').disabled = true;
+            }
+        
+            const shippingFee = 30000;
+            const total = subtotal + shippingFee;
+            document.getElementById('subtotal').textContent = formatCurrency(subtotal);
+            document.getElementById('total').textContent = formatCurrency(total);
+        
+            // Lưu địa chỉ
+            document.getElementById('saveAddress').addEventListener('click', function() {
+                const address = document.getElementById('address').value.trim();
+        
+                if (!address) {
+                    alert('Vui lòng nhập địa chỉ giao hàng.');
+                    return;
+                }
+        
+                if (!currentUser) {
+                    alert('Không tìm thấy thông tin người dùng.');
+                    return;
+                }
+        
+                const fullName = `${currentUser.firstName} ${currentUser.lastName}`;
+                const shippingAddressData = { 
+                    fullName: fullName, 
+                    email: currentUser.email, 
+                    phone: currentUser.phone, 
+                    address: address 
+                };
+                localStorage.setItem('shippingAddress', JSON.stringify(shippingAddressData));
+                showSavedAddress(shippingAddressData);
+            });
+        
+            // Cho phép thay đổi địa chỉ
+            document.getElementById('changeAddress').addEventListener('click', function() {
+                document.getElementById('address-form').classList.remove('hidden');
+                document.getElementById('address-display').classList.add('hidden');
+            });
+        
+            // Đặt hàng
+            document.getElementById('checkout-btn').addEventListener('click', function() {
+                const shippingAddressData = JSON.parse(localStorage.getItem('shippingAddress'));
+                
+                if (!shippingAddressData) {
+                    alert('Vui lòng nhập địa chỉ giao hàng trước khi đặt hàng.');
+                    return;
+                }
+        
+                if (shoppingCart.length === 0) {
+                    alert('Giỏ hàng của bạn trống.');
+                    return;
+                }
+        
+                const purchaseData = {
+                    items: shoppingCart,
+                    totalAmount: total,
+                    address: shippingAddressData,
+                    purchaseDate: new Date().toISOString()
+                };
+        
+                const purchaseHistory = JSON.parse(localStorage.getItem('purchaseHistory')) || [];
+                purchaseHistory.push(purchaseData);
+                localStorage.setItem('purchaseHistory', JSON.stringify(purchaseHistory));
+        
+                localStorage.removeItem('shoppingCart');
+        
+                document.getElementById('payment-container').style.display = 'none';
+                document.getElementById('success-message').style.display = 'block';
+            });
+        
+            document.getElementById('continue-shopping').addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+        
+            function formatCurrency(amount) {
+                return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+            }
+        
+            function showSavedAddress(addressData) {
+                document.getElementById('display-name').textContent = addressData.fullName;
+                document.getElementById('display-email').textContent = addressData.email;
+                document.getElementById('display-phone').textContent = addressData.phone;
+                document.getElementById('display-address').textContent = addressData.address;
+                
+                document.getElementById('address-form').classList.add('hidden');
+                document.getElementById('address-display').classList.remove('hidden');
+            }
+        });
+        </script>
+        
+</body>
+</html>

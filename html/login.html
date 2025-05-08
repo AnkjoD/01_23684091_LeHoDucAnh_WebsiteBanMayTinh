@@ -1,118 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
   <title>Đăng Nhập</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
   <style>
-    header {
-
-        background: #d70018;
-        color: white;
-      }
     body {
-      background-color: #f7f7f7;
+      background-color: #3164ff;
+      font-family: "Poppins", sans-serif;
     }
-    .form-container {
+    .container {
       max-width: 400px;
-      margin: 50px auto;
-      background-color: white;
-      padding: 20px;
+      margin: 100px auto;
+      background: #fff;
+      padding: 2em;
       border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-    a{
-        text-decoration: none;
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
-
-    .logo{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
+    input.error {
+      border-color: #ff4747;
     }
-    .spin{
-      width: 50px;
-      animation-name: spin;
-      animation-duration: 5000ms;
-      animation-iteration-count: infinite;
-      animation-timing-function: linear; 
+    input.valid {
+      border-color: #37a137;
     }
-    .spin path{
-      background-color: white;
+    span.error-message {
+      color: #ff4747;
+      font-size: 0.9em;
+      display: none;
     }
-    @keyframes spin {
-      from {
-          transform:rotate(0deg);
-      }
-      to {
-          transform:rotate(-360deg);
-      }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      background-color: #3164ff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
     }
   </style>
-
 </head>
 <body>
-    <a href = 'index.html'>
-        <header class="py-3">
-            <div class="container d-flex justify-content-center align-items-center">
-              <div class="logo">
-                <img src = "../imgs/nazi-symbol-3-svgrepo-com.svg" class = "spin">
-                <h1 class="h4 mb-0">Máy Tính Store</h1>
-                        
-                </div>
-            </div>
-          </header>
-    </a>
-<div class="form-container">
-  <h2 class="text-center">Đăng Nhập</h2>
-  <form id="loginForm">
-    <div class="form-group">
-      <label for="username">Tên đăng nhập</label>
-      <input type="text" class="form-control" id="username" required>
-    </div>
-    <div class="form-group">
-      <label for="password">Mật khẩu</label>
-      <input type="password" class="form-control" id="password" required>
-    </div>
-    <button type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
-  </form>
-  <p class="text-center mt-3">Chưa có tài khoản? <a href="register.html">Đăng ký</a></p>
-</div>
+  <div class="container">
+    <h3 class="text-center">Đăng Nhập</h3>
+    <label>Email</label>
+    <input type="email" id="login-email" placeholder="Email" />
+    <span id="email-error" class="error-message">Email không hợp lệ</span>
 
-<!-- jQuery and Bootstrap JS -->
-<script src="../js/jquery-3.7.1.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
+    <label class="mt-3">Password</label>
+    <input type="password" id="login-password" placeholder="Password" />
+    <span id="password-error" class="error-message">Mật khẩu phải >=8 ký tự, gồm chữ hoa, thường, số, ký tự đặc biệt</span>
 
-<!-- Custom JS -->
-<script>
-  $('#loginForm').on('submit', function(e) {
-    e.preventDefault();
+    <button id="login-btn">Đăng Nhập</button>
+    <p class="text-center mt-3">Chưa có tài khoản? <a href="register.html">Đăng Ký</a></p>
+  </div>
 
-    const username = $('#username').val().trim();
-    const password = $('#password').val();
+  <script>
+    const emailInput = document.getElementById("login-email");
+    const passwordInput = document.getElementById("login-password");
+    const emailError = document.getElementById("email-error");
+    const passwordError = document.getElementById("password-error");
 
-    // Lấy danh sách người dùng từ localStorage
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const emailVerify = (input) => {
+      const regex = /^[a-z0-9_]+@[a-z]{3,}\.[a-z\.]{3,}$/;
+      return regex.test(input);
+    };
 
-    // Tìm người dùng trùng tên và mật khẩu
-    const validUser = users.find(user => user.username === username && user.password === password);
+    const passwordVerify = (password) => {
+      const regex =
+        /^(?=.+[a-z])(?=.+[A-Z])(?=.+[0-9])(?=.+[\$\%\^\&\!@\#\*\(\)\+\=`~\?\>\<])/;
+      return regex.test(password) && password.length >= 8;
+    };
 
-    if (validUser) {
-      // Lưu trạng thái đăng nhập vào localStorage (tuỳ chọn)
-      localStorage.setItem('currentUser', JSON.stringify(validUser));
+    emailInput.addEventListener("input", () => {
+      if (emailVerify(emailInput.value)) {
+        emailInput.classList.add("valid");
+        emailInput.classList.remove("error");
+        emailError.style.display = "none";
+      } else {
+        emailInput.classList.add("error");
+        emailInput.classList.remove("valid");
+        emailError.style.display = "block";
+      }
+    });
 
-      alert('Đăng nhập thành công!');
-      window.location.href = 'index.html'; // chuyển hướng đến trang chính
-    } else {
-      alert('Tên đăng nhập hoặc mật khẩu không đúng!');
-    }
-  });
-</script>
+    passwordInput.addEventListener("input", () => {
+      if (passwordVerify(passwordInput.value)) {
+        passwordInput.classList.add("valid");
+        passwordInput.classList.remove("error");
+        passwordError.style.display = "none";
+      } else {
+        passwordInput.classList.add("error");
+        passwordInput.classList.remove("valid");
+        passwordError.style.display = "block";
+      }
+    });
 
+    document.getElementById("login-btn").addEventListener("click", () => {
+      const email = emailInput.value.trim().toLowerCase();
+      const password = passwordInput.value;
 
+      const valid = emailVerify(email) && passwordVerify(password);
+      if (!valid) {
+        alert("Vui lòng điền thông tin hợp lệ!");
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        alert("Đăng nhập thành công!");
+        window.location.href = "index.html";
+      } else {
+        alert("Email hoặc mật khẩu không đúng!");
+      }
+    });
+  </script>
 </body>
 </html>

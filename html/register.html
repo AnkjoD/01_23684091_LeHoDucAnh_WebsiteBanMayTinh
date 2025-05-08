@@ -8,117 +8,186 @@
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <!-- Custom CSS -->
   <style>
-    header {
-        
-        background: #d70018;
-        color: white;
-      }
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
     body {
-      background-color: #f7f7f7;
+      background-color: #3164ff;
     }
-    .form-container {
-      max-width: 400px;
-      margin: 50px auto;
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    .container {
+      width: 90vw;
+      max-width: 600px;
+      padding: 2em 1.5em;
+      background-color: #ffffff;
+      margin: 1em auto;
+      border-radius: 0.5em;
     }
-    a{
-        text-decoration: none;
+    h4 {
+      font-size: 1.5em;
     }
-    .logo{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
+    .input-section {
+      margin: 0.5em 0;
     }
-    .spin{
-      fill: white;
-      width: 50px;
-      animation-name: spin;
-      animation-duration: 5000ms;
-      animation-iteration-count: infinite;
-      animation-timing-function: linear; 
+    label,
+    .error-message {
+      display: block;
+      font-size: 1em;
     }
-    
-    @keyframes spin {
-      from {
-          transform:rotate(0deg);
-      }
-      to {
-          transform:rotate(-360deg);
+    label {
+      margin-bottom: 0.5em;
+      font-weight: 500;
+    }
+    .error-message {
+      margin-top: 0.2em;
+    }
+    input,
+    button {
+      display: block;
+      outline: none;
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 0.3em;
+    }
+    input {
+      padding: 1em 0.5em;
+      border: 1.5px solid #d0d0d0;
+    }
+    button {
+      font-size: 1em;
+      background-color: #3164ff;
+      border: none;
+      color: #ffffff;
+      padding: 0.8em 0;
+      margin-top: 2em;
+    }
+    .required-color {
+      color: #ff4747;
+    }
+    .error {
+      border-color: #ff4747;
+    }
+    .valid {
+      border-color: #37a137;
+    }
+    .hide {
+      display: none;
+    }
+    @media only screen and (max-width: 450px) {
+      .container {
+        font-size: 14px;
       }
     }
   </style>
 </head>
 <body>
-    <a href = 'index.html'>
-        <header class="py-3">
-            <div class="container d-flex justify-content-center align-items-center">
-              <h1 class="h4 mb-0">🖥️ Máy Tính Store</h1>
-            </div>
-          </header>
-    </a>
-<div class="form-container">
-  <h2 class="text-center">Đăng Ký</h2>
-  <form id="registerForm">
-    <div class="form-group">
-      <label for="username">Tên đăng nhập</label>
-      <input type="text" class="form-control" id="username" required>
+   
+    <div class="container">
+      <form autocomplete="off">
+        <h4>Create Your Account</h4>
+        <div class="input-section">
+          <label>First Name <span class="required-color">*</span></label>
+          <input
+            type="text"
+            placeholder="Enter First Name"
+            id="first-name-input"
+            required
+          />
+          <span id="first-name-error" class="hide required-color error-message"
+            >Invalid Input</span
+          >
+          <span id="empty-first-name" class="hide required-color error-message"
+            >First Name Cannot Be Empty</span
+          >
+        </div>
+        <div class="input-section">
+          <label>Last Name <span class="required-color">*</span></label>
+          <input
+            type="text "
+            placeholder="Enter Last Name"
+            id="last-name-input"
+            required
+          />
+          <span id="last-name-error" class="hide required-color error-message"
+            >Invalid Input</span
+          >
+          <span id="empty-last-name" class="hide required-color error-message">
+            Last Name Cannot Be Empty
+          </span>
+        </div>
+        <div class="input-section">
+          <label>Email <span class="required-color">*</span></label>
+          <input type="email" placeholder="Enter Email" id="email" required />
+          <span id="email-error" class="hide required-color error-message"
+            >Invalid Email</span
+          >
+          <span id="empty-email" class="hide required-color error-message"
+            >Email Cannot Be Empty</span
+          >
+        </div>
+        <div class="input-section">
+          <label>Phone <span class="required-color">*</span></label>
+          <input
+            type="text"
+            placeholder="Enter Phone Number"
+            id="phone"
+            required
+          />
+          <span id="phone-error" class="hide required-color error-message"
+            >Phone Number Should Have 10 Digits</span
+          >
+          <span id="empty-phone" class="hide required-color error-message">
+            Phone cannot be empty
+          </span>
+        </div>
+        <div class="input-section">
+          <label>Password <span class="required-color">*</span></label>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            id="password"
+            required
+          />
+          <span id="password-error" class="hide required-color error-message">
+            Passwords Should Have Letter, Special symbols, Numbers And Length >=
+            8
+          </span>
+          <span id="empty-password" class="hide required-color error-message">
+            Password Cannot Be Empty
+          </span>
+        </div>
+        <div class="input-section">
+          <label>Confirm Password <span class="required-color">*</span></label>
+          <input
+            type="password"
+            id="verify-password"
+            placeholder="Confirm Password"
+            required
+          />
+          <span
+            id="verify-password-error"
+            class="hide required-color error-message"
+            >Should Be Same As Previous Password</span
+          >
+          <span
+            id="empty-verify-password"
+            class="hide required-color error-message"
+            >Password Cannot Be Empty</span
+          >
+        </div>
+        <button id="submit-button">Signup</button>
+        <p class="text-center mt-3">Bạn đã có tài khoản. <a href="login.html">Đăng Nhập</a></p>
+      </form>
     </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" required>
-    </div>
-    <div class="form-group">
-      <label for="password">Mật khẩu</label>
-      <input type="password" class="form-control" id="password" required>
-    </div>
-    <button type="submit" class="btn btn-primary btn-block">Đăng Ký</button>
-  </form>
-  <p class="text-center mt-3">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
-</div>
-
 <!-- jQuery and Bootstrap JS -->
 <script src="../js/jquery-3.7.1.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
 
 <!-- Custom JS -->
-<script>
-  $('#registerForm').on('submit', function(e) {
-    e.preventDefault();
-
-    const username = $('#username').val().trim();
-    const email = $('#email').val().trim();
-    const password = $('#password').val();
-
-    if (!username || !email || !password) {
-      alert("Vui lòng điền đầy đủ thông tin.");
-      return;
-    }
-
-    // Lấy danh sách người dùng từ localStorage hoặc tạo mới
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-
-    // Kiểm tra trùng tên đăng nhập hoặc email
-    const userExists = users.some(u => u.username === username || u.email === email);
-    if (userExists) {
-      alert('Tên đăng nhập hoặc email đã được sử dụng!');
-      return;
-    }
-
-    // Tạo người dùng mới
-    const newUser = { username, email, password };
-    users.push(newUser);
-
-    // Lưu lại vào localStorage
-    localStorage.setItem('users', JSON.stringify(users));
-
-    alert('Đăng ký thành công! Chuyển sang trang đăng nhập...');
-    window.location.href = 'login.html';
-  });
-</script>
+<script src="../js/register.js"></script>
+  
 
 
 </body>
