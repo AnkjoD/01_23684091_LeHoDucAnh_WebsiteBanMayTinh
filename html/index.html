@@ -6,13 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/userStatus.css">
+    <!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+   
     <title>Document</title>
 </head>
 <body>
-    <section class=" top-txt ">
+    <section class=" top-txt  headContainer">
         <div class="head container ">
             <div class="head-txt ">
-                <p>Free shipping, 30-day return or refund guarantee.</p>
+                <p>Free shipping, 30 ngày miễn phí.</p>
             </div>
             <div class="sing_in_up ">
                 <a href="login.html">SIGN IN</a>
@@ -32,7 +35,16 @@
                 <li><a href="products.html">Products</a></li>
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="login.html"><i class="fa fa-user-circle-o" style="font-size: 20px;" aria-hidden="true"></i></a></li>
+                <li id = "account">
+                    
+                        <a href="login.html" id="login-link">
+                          <i class="fa fa-user-circle-o" style="font-size: 20px;" aria-hidden="true"></i>
+                        </a>
+                        <div class = "action" id="action"></div>
+                       
+                        
+                </li>
+                   
             </ul>
             <div class="logo">
 
@@ -257,5 +269,8 @@
             </div>
         </div>
     </footer>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/userStatus.js"></script>
 </body>
 </html>

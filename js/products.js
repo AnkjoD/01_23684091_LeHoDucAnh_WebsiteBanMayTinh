@@ -161,24 +161,3 @@ const products = [
           notification.remove();
       });
   }
-function safeParse(jsonString, defaultValue = []) {
-    try {
-        return JSON.parse(jsonString) || defaultValue;
-    } catch (e) {
-        return defaultValue;
-    }
-}
-
-let checkoutButton = document.getElementById("checkout");
-checkoutButton.addEventListener("click", (e) => {
-    e.preventDefault(); // Ngăn reload form
-
-    const currentUser = safeParse(localStorage.getItem("currentUser"));
-    if (currentUser.length == 0) {
-        alert("Vui lòng đăng nhập để thanh toán!");
-        window.location.href = "login.html"; // Chuyển sang trang đăng nhập
-        return;
-    }
-
-    window.location.href = "checkout.html"; // Chuyển sang trang thanh toán
-});
