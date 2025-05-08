@@ -194,7 +194,7 @@ submitButton.addEventListener("click", (e) => {
       users.push(user);
       localStorage.setItem("users", JSON.stringify(users));
   
-      alert("Registration successful!");
+      alert("Đăng ký thành công!");
       window.location.href = "login.html"; // Chuyển sang trang đăng nhập
     } else {
       alert("Please fix the errors before submitting.");

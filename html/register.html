@@ -88,10 +88,10 @@
       <form autocomplete="off">
         <h4>Create Your Account</h4>
         <div class="input-section">
-          <label>First Name <span class="required-color">*</span></label>
+          <label>Họ <span class="required-color">*</span></label>
           <input
             type="text"
-            placeholder="Enter First Name"
+            placeholder="Nhập Họ"
             id="first-name-input"
             required
           />
@@ -99,11 +99,11 @@
             >Invalid Input</span
           >
           <span id="empty-first-name" class="hide required-color error-message"
-            >First Name Cannot Be Empty</span
+            >Họ không được để trống</span
           >
         </div>
         <div class="input-section">
-          <label>Last Name <span class="required-color">*</span></label>
+          <label>Tên <span class="required-color">*</span></label>
           <input
             type="text "
             placeholder="Enter Last Name"
@@ -111,24 +111,24 @@
             required
           />
           <span id="last-name-error" class="hide required-color error-message"
-            >Invalid Input</span
+            >Lỗi nhập</span
           >
           <span id="empty-last-name" class="hide required-color error-message">
-            Last Name Cannot Be Empty
+            Tên không được để trống
           </span>
         </div>
         <div class="input-section">
           <label>Email <span class="required-color">*</span></label>
           <input type="email" placeholder="Enter Email" id="email" required />
           <span id="email-error" class="hide required-color error-message"
-            >Invalid Email</span
+            >Email không hợp lệ</span
           >
           <span id="empty-email" class="hide required-color error-message"
-            >Email Cannot Be Empty</span
+            >Email không được để trống</span
           >
         </div>
         <div class="input-section">
-          <label>Phone <span class="required-color">*</span></label>
+          <label>Số điện thoại <span class="required-color">*</span></label>
           <input
             type="text"
             placeholder="Enter Phone Number"
@@ -136,14 +136,14 @@
             required
           />
           <span id="phone-error" class="hide required-color error-message"
-            >Phone Number Should Have 10 Digits</span
+            >Số điện thoại nên là 10 chữ số</span
           >
           <span id="empty-phone" class="hide required-color error-message">
-            Phone cannot be empty
+            Số điện thoại không được để trống
           </span>
         </div>
         <div class="input-section">
-          <label>Password <span class="required-color">*</span></label>
+          <label>Mật khẩu <span class="required-color">*</span></label>
           <input
             type="password"
             placeholder="Enter Password"
@@ -151,15 +151,15 @@
             required
           />
           <span id="password-error" class="hide required-color error-message">
-            Passwords Should Have Letter, Special symbols, Numbers And Length >=
-            8
+            Mật khẩu cần >=8 ký tự, gồm chữ hoa, thường, số, ký tự đặc biệt
+           
           </span>
           <span id="empty-password" class="hide required-color error-message">
-            Password Cannot Be Empty
+            Mật khẩu không thể để trống
           </span>
         </div>
         <div class="input-section">
-          <label>Confirm Password <span class="required-color">*</span></label>
+          <label>Xác nhận mật khẩu <span class="required-color">*</span></label>
           <input
             type="password"
             id="verify-password"
@@ -169,12 +169,14 @@
           <span
             id="verify-password-error"
             class="hide required-color error-message"
-            >Should Be Same As Previous Password</span
+            >
+            Mật khẩu bạn nhập trên khác với trên
+            </span
           >
           <span
             id="empty-verify-password"
             class="hide required-color error-message"
-            >Password Cannot Be Empty</span
+            >Mật khẩu không được để trống</span
           >
         </div>
         <button id="submit-button">Signup</button>

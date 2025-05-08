@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     if (!isEmpty(loggedInUser)) {
       if (loginLink) loginLink.remove();
-      account.innerHTML += `<a href = "#"><i class="fa fa-user-circle-o" style="font-size: 20px;" aria-hidden="true"></i></a>`
+      account.innerHTML += `<a href = "#"><i class="fa fa-user-circle-o" style="font-size: 20px;" aria-hidden="true"></i></a>`;
 
       const userDropdown = document.createElement("div");
       userDropdown.className = "user-dropdown";
@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="menu">
         <h3 class="user-name">${loggedInUser.firstName} ${loggedInUser.lastName}</h3>
         <ul>
-            
-            <li><div href="#" id="logoutBtn">Đăng xuất</div></li>
+           
+            <li><div id="logoutBtn">Đăng xuất</div></li>
         </ul>
       </div>
       `;
@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
       
       userMenu.appendChild(userDropdown);
       
-
   
       // Toggle dropdown
       const nameToggle = userDropdown.querySelector(".user-name");
@@ -51,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   
     //   Logout
+
       document.getElementById("logoutBtn").addEventListener("click", () => {
         localStorage.removeItem("loggedInUser");
         location.reload();
